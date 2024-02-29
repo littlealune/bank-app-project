@@ -1,6 +1,6 @@
 const { expect } = require('chai')
 const request = require('supertest')
-const app = require('./app') // Assuming your Express app file is named 'app.js'
+const app = require('./App') // Assuming your Express app file is named 'app.js'
 const accounts = require('./accounts') // Import accounts data
 
 describe('Login endpoint', () => {
