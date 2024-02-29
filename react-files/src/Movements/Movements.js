@@ -6,7 +6,7 @@ function Movements({ movements }) {
   return (
     <div className="movements">
       {movements.map((movement, index) => (
-        <Movement position={index} amount={movement} />
+        <Movement position={index} amount={movement.amount} date={movement.date}/>
       ))}
     </div>
   )

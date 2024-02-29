@@ -1,7 +1,7 @@
 import './Balance.css'
 function Balance(props) {
   const { movements } = props
-  const balance = movements.reduce((acc, mov) => acc + mov, 0)
+  const balance = movements.reduce((acc, mov) => acc + mov.amount, 0)
   return (
     <div className="balance">
       <div>

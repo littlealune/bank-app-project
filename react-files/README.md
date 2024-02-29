@@ -1,70 +1,70 @@
-# Proyecto aplicación de Banco
+# Getting Started with Create React App
 
-## Descripción
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-El objetivo es realizar una pequeña aplicación en React o JavaScript con la siguiente funcionalidad:
+## Available Scripts
 
-- Login de usuario
-- Mostrar los movimientos de la cuenta del usuario después de hacer login y sus datos personales:
-  - Nombre y apellidos
-  - DNI
-  - Número de cuenta
-  - Dirección
-- Poder realizar ingresos o retiradas de dinero.
-- Poder realizar transferencias a cuentas de otros usuarios
-- Puedes apoyarte en el desarrollo que ya hicimos en https://github.com/juanda99/banco-app y en la documentación de Obsidian relacionada.
+In the project directory, you can run:
 
-La aplicación se puede realizar en parejas. En este caso recomiendo el uso de react para que, al trabajar con varios ficheros (componentes) no os solapéis escribiendo el código.
+### `npm start`
 
-## Servidor
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-- Se dispone de una base de datos en formato texto (fichero accounts.js).
-- El servidor presenta una API para recibir/enviar datos mediante HTTP (GET & POST)
-- El servidor se arranca mediante ```npm run start````
-- Para documentación sobre la app de servidor, te recomiendo mires los tests (fichero app.test.js)
-- Los endpoints relacionados con alteraciones en las cuentas de los usuarios están autenticados con JWT
-  - Ver https://jwt.io/
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-## Requerimientos
+### `npm test`
 
-- Realiza un fork del repositorio y trabaja en tu propio repositorio. Deberás hacer un commit por cada funcionalidad o error de código que implementes. En caso de hacer el proyecto con otra persona, deberá haber commits de ambos.
-- Se valorará que utilices varias tecnologías o que profundices en el uso de alguna. Ejemplos:
-  - Realizar la aplicación tanto en React como en JavaScript
-  - Uso de algún framwork de CSS
-  - En el caso de ser una aplicación en React, el uso de varias páginas (login, ingresos y gastos, transferencias) utilizando por ejemplo [React Router](https://reactrouter.com/en/main)
-- En el caso de transferencias, deberás validar en cliente que la cuenta tenga un formato correcto (usando el evento adecuado). Puedes ayudarte del fichero `validateAccount.js`
-- Las llamadas a la API deberán contemplar la posibilidades de errores, tal y como aparecen en los tests:
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-```
-➜  npm run test
+### `npm run build`
 
-> bank-server@1.0.0 test
-> NODE_ENV=test mocha app.test.js
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Server is running on port 3000
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-  Login endpoint
-    ✔ should return account details and token on valid login
-    ✔ should return error on invalid credentials
+### `npm run eject`
 
-  GET /user
-    ✔ should return user data with a valid token
-    ✔ should handle unauthorized access with an invalid token
-    ✔ should handle invalid token format
-    ✔ should handle missing token
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-  Transfer endpoint
-    ✔ should transfer money between accounts
-    ✔ should handle insufficient balance error
-    ✔ should handle destination account not found
-    ✔ should handle unauthorized access
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-  Movements endpoint
-    ✔ should update movements successfully
-    ✔ should handle insufficient balance when taking money out
-    ✔ should handle unauthorized access
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-  13 passing (38ms)
-```
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
