@@ -6,7 +6,7 @@ import Summary from './Summary/Summary'
 import Movements from './Movements/Movements'
 import Balance from './Balance/Balance'
 import LogOutTimer from './LogOutTimer/LogOutTimer'
-const ACCOUNTS_URL = 'http://localhost:3000'
+const ACCOUNTS_URL = 'http://localhost:4000'
 
 function App() {
   const [account, setAccount] = useState({})
@@ -61,7 +61,7 @@ function App() {
                 type="number"
                 className="form__input form__input--loan-amount"
               />
-              <button className="form__btn form__btn--loan" href={ACCOUNTS_URL + '/movement?token=' + token}>&rarr;</button>
+              <button className="form__btn form__btn--loan" href={ACCOUNTS_URL + '/movements?token=' + token}>&rarr;</button>
               <label className="form__label form__label--loan">Amount</label>
             </form>
           </div>
