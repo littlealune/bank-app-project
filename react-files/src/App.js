@@ -6,12 +6,13 @@ import Summary from './Summary/Summary'
 import Movements from './Movements/Movements'
 import Balance from './Balance/Balance'
 import LogOutTimer from './LogOutTimer/LogOutTimer'
+import Info from './Info/Info'
 const ACCOUNTS_URL = 'http://localhost:4000'
 
 function App() {
   const [account, setAccount] = useState({})
   const [token, setToken] = useState('')
-  const { movements, owner: user = '' , interestRate} = account
+  const { movements, owner: user = '' , interestRate, numberAccount, address, country, nationalIdNumber} = account
 
   const handleLogin = async (user, pin) => {
     try {
@@ -36,19 +37,26 @@ function App() {
       </nav>
       {user && (
         <main className="app">
+         
+         <Info user={user} numberAccount={numberAccount} address={address} country={country} nationalIdNumber={nationalIdNumber}/>
           <Balance movements={movements} />
           <Movements movements={movements} />
           <Summary movements={movements} interestRate={interestRate}/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+
 
           <div className="operation operation--transfer">
             <h2>Transfer money</h2>
-            <form className="form form--transfer">
+            <form className="form form--transfer" method="post" action={ACCOUNTS_URL + '/transfer?token=' + token}>
               <input type="text" className="form__input form__input--to" />
               <input
                 type="number"
                 className="form__input form__input--amount"
               />
-              <button className="form__btn form__btn--transfer" href={ACCOUNTS_URL + '/transfer?token=' + token}>&rarr;</button>
+              <button className="form__btn form__btn--transfer" type='submit'>&rarr;</button>
               <label className="form__label">Transfer to</label>
               <label className="form__label">Amount</label>
             </form>
@@ -56,12 +64,12 @@ function App() {
 
           <div className="operation operation--loan">
             <h2>Request loan</h2>
-            <form className="form form--loan">
+            <form className="form form--loan" method="post" action={ACCOUNTS_URL + '/movements?token=' + token}>
               <input
                 type="number"
                 className="form__input form__input--loan-amount"
               />
-              <button className="form__btn form__btn--loan" href={ACCOUNTS_URL + '/movements?token=' + token}>&rarr;</button>
+              <button className="form__btn form__btn--loan" type='submit'>&rarr;</button>
               <label className="form__label form__label--loan">Amount</label>
             </form>
           </div>

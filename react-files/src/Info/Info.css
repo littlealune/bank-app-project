@@ -1,0 +1,18 @@
+.infoSheet {
+    grid-row: 2 / span 3;
+    background-color: #fff;
+    border-radius: 1rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+  }
+  .info__label {
+    padding-left: 2rem;
+    padding-top: 2rem;
+    font-size: 3rem;
+  }
+  
+  .info__value {
+    margin-bottom: 10px;
+    padding-left: 3rem;
+    font-size: 2rem;
+    padding-top: 1rem;
+  }
