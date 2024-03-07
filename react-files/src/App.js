@@ -37,14 +37,18 @@ function App() {
     // Obtener los datos del usuario inicialmente
     fetchUserData()
     // Configurar una función para obtener los datos cuando se detecta una transferencia
-    const handleTransfer = () => {
+    const handleChange = () => {
       fetchUserData()
     }
     // Agregar un event listener para manejar las transferencias
-    document.addEventListener('transfer', handleTransfer)
+    document.addEventListener('transfer', handleChange)
+    document.addEventListener('withdrawal',handleChange)
+    document.addEventListener('deposit',handleChange)
     // Limpiar el event listener cuando el componente se desmonte
     return () => {
-      document.removeEventListener('transfer', handleTransfer)
+      document.removeEventListener('transfer', handleChange)
+      document.removeEventListener('withdrawal', handleChange)
+      document.removeEventListener('deposit', handleChange)
     }
   }, [token]) // Se ejecuta solo cuando cambia el token
 
@@ -94,7 +98,7 @@ function App() {
           
 
           <div className="operation operation--loan">
-            <h2>Request loan</h2>
+            <h2>Deposit</h2>
             <form className="form form--loan" method="post" action={ACCOUNTS_URL + '/movements?token=' + token}>
               <input
                 type="number"

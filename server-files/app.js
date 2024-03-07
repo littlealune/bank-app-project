@@ -133,7 +133,7 @@ app.post('/movements', (req, res) => {
       }
       accounts[accountIndex].movements.push({
         amount,
-        date: todayString
+        date: new Date().toISOString()
       })
       debugLog('Movements updated successfully.')
       res.json({ message: 'Movements updated' })
@@ -145,8 +145,6 @@ app.post('/movements', (req, res) => {
 })
 
 app.post('/transfer', (req, res) => {
-  const todayDate = new Date()
-  const todayString = todayDate.format('YYYY-MM-DD')
 
   debugLog('Received a transfer request.')
   const token = req.query.token
@@ -193,13 +191,13 @@ app.post('/transfer', (req, res) => {
     // Deduct amount from the source account
     sourceAccountObj.movements.push({
       amount: -amount,
-      date: todayString,
+      date: new Date().toISOString()
     })
 
     // Add amount to the destination account
     accounts[destinationIndex].movements.push({
       amount,
-      date: todayString,
+      date: new Date().toISOString()
     })
 
     debugLog('Transfer successful.')

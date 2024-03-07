@@ -31,6 +31,10 @@ function Withdrawal({token}) {
             })
             .then((data) => {
                 console.log(data)
+                const withdrawalEvent = new CustomEvent('withdrawal', {
+                    detail: { type: 'withdrawal' },
+                })
+                document.dispatchEvent(withdrawalEvent)
             })
             .catch((error) => {
                 console.error('There was a problem with the fetch operation:', error)
