@@ -8,30 +8,45 @@ import Balance from './Balance/Balance'
 import LogOutTimer from './LogOutTimer/LogOutTimer'
 import Info from './Info/Info'
 import Transfer from './Transfer/Transfer'
+import Withdrawal from './Withdrawal/Withdrawal'
 const ACCOUNTS_URL = 'http://localhost:4000'
 
 function App() {
   const [account, setAccount] = useState({})
   const [token, setToken] = useState('')
-  const [movements, setMovements] = useState([])
-  const { owner: user = '', interestRate, numberAccount, address, country, nationalIdNumber, pin, username } = account
+  const { movements, owner: user = '', interestRate, numberAccount, address, country, nationalIdNumber, pin, username } = account
 
   useEffect(() => {
-    const fetchMovements = async () => {
-      try {
-        const response = await fetch(`${ACCOUNTS_URL}/user?token=${token}`);
-        if (!response.ok) {
-          throw new Error('Failed to fetch movements');
-        }
-        const data = await response.json();
-        setMovements(data.account.movements || []);
-      } catch (error) {
-        console.error('Error fetching movements:', error.message);
-      }
-    };
-
-    fetchMovements();
-  }, [token]);
+    // Función para obtener los datos del usuario
+    const fetchUserData = () => {
+      if (!token) return // No hay token, no se puede obtener datos
+      fetch('http://localhost:4000/user?token=' + token)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok')
+          }
+          return response.json()
+        })
+        .then((data) => {
+          setAccount(data.account)
+        })
+        .catch((error) => {
+          console.error('There was a problem with the fetch operation:', error)
+        })
+    }
+    // Obtener los datos del usuario inicialmente
+    fetchUserData()
+    // Configurar una función para obtener los datos cuando se detecta una transferencia
+    const handleTransfer = () => {
+      fetchUserData()
+    }
+    // Agregar un event listener para manejar las transferencias
+    document.addEventListener('transfer', handleTransfer)
+    // Limpiar el event listener cuando el componente se desmonte
+    return () => {
+      document.removeEventListener('transfer', handleTransfer)
+    }
+  }, [token]) // Se ejecuta solo cuando cambia el token
 
 
   const handleLogin = async (user, pin) => {
@@ -68,7 +83,7 @@ function App() {
 
           <Info user={user} numberAccount={numberAccount} address={address} country={country} nationalIdNumber={nationalIdNumber} />
           <Balance movements={movements} />
-          <Movements movements={movements} />
+          <Movements movements={movements}/>
           <Summary movements={movements} interestRate={interestRate} />
           <br />
           <br />
@@ -76,7 +91,7 @@ function App() {
           <br />
 
 
-          <Transfer token={token} />
+          
 
           <div className="operation operation--loan">
             <h2>Request loan</h2>
@@ -89,6 +104,8 @@ function App() {
               <label className="form__label form__label--loan">Amount</label>
             </form>
           </div>
+          <Transfer token={token}/>
+          <Withdrawal token={token}/>
 
           <div className="operation operation--close">
             <h2>Close account</h2>
