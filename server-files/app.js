@@ -120,16 +120,13 @@ app.post('/movements', (req, res) => {
     )
 
     if (accountIndex !== -1) {
-      // Check if the requested amount is greater than the account balance
-      if (
-        amount >
-        accounts[accountIndex].movements.reduce(
-          (acc, movement) => acc + movement.amount,
-          0
-        )
-      ) {
-        debugLog('Insufficient balance.')
-        return res.status(400).json({ message: 'Insufficient balance' })
+      //check if it is a negative amount
+      if (amount < 0) {
+        // Check if the requested amount is greater than the account balance
+        if (Math.abs(amount) > accounts[accountIndex].movements.reduce((acc, movement) => acc + movement.amount, 0)) {
+          debugLog('Insufficient balance.')
+          return res.status(400).json({ message: 'Insufficient balance' })
+        }
       }
       accounts[accountIndex].movements.push({
         amount,

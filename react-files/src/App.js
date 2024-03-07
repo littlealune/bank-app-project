@@ -8,6 +8,7 @@ import Balance from './Balance/Balance'
 import LogOutTimer from './LogOutTimer/LogOutTimer'
 import Info from './Info/Info'
 import Transfer from './Transfer/Transfer'
+import Deposit from './Deposit/Deposit'
 import Withdrawal from './Withdrawal/Withdrawal'
 const ACCOUNTS_URL = 'http://localhost:4000'
 
@@ -97,17 +98,7 @@ function App() {
 
           
 
-          <div className="operation operation--loan">
-            <h2>Deposit</h2>
-            <form className="form form--loan" method="post" action={ACCOUNTS_URL + '/movements?token=' + token}>
-              <input
-                type="number"
-                className="form__input form__input--loan-amount"
-              />
-              <button className="form__btn form__btn--loan" type='submit'>&rarr;</button>
-              <label className="form__label form__label--loan">Amount</label>
-            </form>
-          </div>
+          <Deposit token={token} />
           <Transfer token={token}/>
           <Withdrawal token={token}/>
 
