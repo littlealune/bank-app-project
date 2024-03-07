@@ -1,0 +1,10 @@
+.operation {
+    border-radius: 1rem;
+    padding: 3rem 4rem;
+    color: #333;
+  }
+  
+  .operation--transfer {
+    background-image: linear-gradient(to top left, #ffb003, #ffcb03);
+  }
+  

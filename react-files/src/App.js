@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState , useEffect} from 'react'
 import './App.css'
 import Welcome from './Welcome/Welcome'
 import Login from './Login/Login'
@@ -7,12 +7,32 @@ import Movements from './Movements/Movements'
 import Balance from './Balance/Balance'
 import LogOutTimer from './LogOutTimer/LogOutTimer'
 import Info from './Info/Info'
+import Transfer from './Transfer/Transfer'
 const ACCOUNTS_URL = 'http://localhost:4000'
 
 function App() {
   const [account, setAccount] = useState({})
   const [token, setToken] = useState('')
-  const { movements, owner: user = '', interestRate, numberAccount, address, country, nationalIdNumber, pin, username } = account
+  const [movements, setMovements] = useState([])
+  const { owner: user = '', interestRate, numberAccount, address, country, nationalIdNumber, pin, username } = account
+
+  useEffect(() => {
+    const fetchMovements = async () => {
+      try {
+        const response = await fetch(`${ACCOUNTS_URL}/user?token=${token}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch movements');
+        }
+        const data = await response.json();
+        setMovements(data.account.movements || []);
+      } catch (error) {
+        console.error('Error fetching movements:', error.message);
+      }
+    };
+
+    fetchMovements();
+  }, [token]);
+
 
   const handleLogin = async (user, pin) => {
     try {
@@ -56,19 +76,7 @@ function App() {
           <br />
 
 
-          <div className="operation operation--transfer">
-            <h2>Transfer money</h2>
-            <form className="form form--transfer" method="post" action={ACCOUNTS_URL + '/transfer?token=' + token}>
-              <input type="text" className="form__input form__input--to" />
-              <input
-                type="number"
-                className="form__input form__input--amount"
-              />
-              <button className="form__btn form__btn--transfer" type='submit'>&rarr;</button>
-              <label className="form__label">Transfer to</label>
-              <label className="form__label">Amount</label>
-            </form>
-          </div>
+          <Transfer token={token} />
 
           <div className="operation operation--loan">
             <h2>Request loan</h2>
