@@ -12,7 +12,7 @@ const ACCOUNTS_URL = 'http://localhost:4000'
 function App() {
   const [account, setAccount] = useState({})
   const [token, setToken] = useState('')
-  const { movements, owner: user = '' , interestRate, numberAccount, address, country, nationalIdNumber} = account
+  const { movements, owner: user = '', interestRate, numberAccount, address, country, nationalIdNumber, pin, username } = account
 
   const handleLogin = async (user, pin) => {
     try {
@@ -28,6 +28,14 @@ function App() {
       console.error("Error: " + error.message)
     }
   }
+  const handleLogout = () => {
+    const userLogout = document.getElementById('user__logout').value ?? ''
+    const pinLogout = document.getElementById('pin__logout').value ?? ''
+    if (username === userLogout && pin === Number(pinLogout)) {
+      window.location.reload()
+    }
+
+  }
 
   return (
     <>
@@ -37,15 +45,15 @@ function App() {
       </nav>
       {user && (
         <main className="app">
-         
-         <Info user={user} numberAccount={numberAccount} address={address} country={country} nationalIdNumber={nationalIdNumber}/>
+
+          <Info user={user} numberAccount={numberAccount} address={address} country={country} nationalIdNumber={nationalIdNumber} />
           <Balance movements={movements} />
           <Movements movements={movements} />
-          <Summary movements={movements} interestRate={interestRate}/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
+          <Summary movements={movements} interestRate={interestRate} />
+          <br />
+          <br />
+          <br />
+          <br />
 
 
           <div className="operation operation--transfer">
@@ -77,13 +85,14 @@ function App() {
           <div className="operation operation--close">
             <h2>Close account</h2>
             <form className="form form--close">
-              <input type="text" className="form__input form__input--user" />
+              <input type="text" className="form__input form__input--user" id="user__logout" />
               <input
                 type="password"
                 maxLength="6"
                 className="form__input form__input--pin"
+                id="pin__logout"
               />
-              <button className="form__btn form__btn--close">&rarr;</button>
+              <button className="form__btn form__btn--close" type="button" onClick={handleLogout}>&rarr;</button>
               <label className="form__label">Confirm user</label>
               <label className="form__label">Confirm PIN</label>
             </form>

@@ -36,7 +36,7 @@ nav {
   max-width: 100rem;
   margin: 4rem auto;
   display: grid;
-  grid-template-columns: 2fr 4fr 2fr;
+  grid-template-columns: 1fr 2fr 1fr;
   grid-template-rows: auto repeat(3, 15rem) auto;
   gap: 2rem;
 

@@ -7,7 +7,8 @@
   .info__label {
     padding-left: 2rem;
     padding-top: 2rem;
-    font-size: 3rem;
+    font-size: 2rem;
+    font-weight: bold;
   }
   
   .info__value {
