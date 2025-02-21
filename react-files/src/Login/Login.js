@@ -12,7 +12,7 @@ function Login({ onLogin }) {
     onLogin(user, pin)
   }
   return (
-    <form className="login">
+    <form className="login" id="LoginForm">
       <input
         type="text"
         placeholder="user"
@@ -20,7 +20,7 @@ function Login({ onLogin }) {
         ref={userRef}
       />
       <input
-        type="text"
+        type="password"
         placeholder="PIN"
         maxLength="4"
         className="login__input login__input--pin"

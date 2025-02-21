@@ -64,6 +64,7 @@ function App() {
       const data = await response.json()
       setAccount(data.account)
       setToken(data.token)
+      document.getElementById('LoginForm').reset()
     } catch (error) {
       console.error("Error: " + error.message)
     }

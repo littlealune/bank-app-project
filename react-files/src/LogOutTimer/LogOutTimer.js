@@ -31,11 +31,9 @@ function LogOutTimer() {
     const seconds = timeRemaining % 60;
 
     return (
-        <div>
-            <p>
-                Time Remaining: <span id="timer" class={clase}>{String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}</span>
-            </p>
-        </div>
+        <>
+                Time Remaining: <span id="timer" className={clase}>{String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}</span>
+        </>
     );
 }
 

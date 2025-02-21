@@ -20,6 +20,24 @@ const accounts = [
     pin: 1111,
   },
   {
+    owner: 'Sara Marco',
+    username: 'sara_m',
+    numberAccount: '23456789',
+    address: '234 Elm St',
+    country: 'Spain',
+    nationalIdNumber: '73439657J',
+    movements: [
+      { amount: 430, date: '2024-02-26' },
+      { amount: 1000, date: '2024-02-26' },
+      { amount: 700, date: '2024-02-26' },
+      { amount: 50, date: '2024-02-26' },
+      { amount: 90, date: '2024-02-26' },
+    ],
+    interestRate: 1.6,
+    pin: 1507,
+  }
+  ,
+  {
     owner: 'María Portazgo',
     username: 'maria_p',
     numberAccount: '87654321',
